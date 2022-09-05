@@ -1,21 +1,20 @@
 'use strict';
 
 const express = require('express');
-
 const app = express();
-
+const cors = require('cors');
+app.use(express.json());
+app.use(cors());
 
 app.get('/',(req, res)=>{
     res.send('Hello World');
 })
 
 app.post('/person',(req, res)=>{
-    const {name ,age ,gender} = req.query;
+    const {age} = req.body;
     let parsedAge = parseInt(age)+5;
-    res.send({name : name,
-        age : `after 5 years your age will be ${parsedAge}`,
-        gender : gender
-    });
+    console.log( typeof res)
+    res.send(`${parsedAge}`);
 })
 
 
